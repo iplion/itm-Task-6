@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import web.model.Car;
 import web.service.CarService;
@@ -12,7 +11,6 @@ import web.service.CarService;
 import java.util.List;
 
 @Controller
-@RequestMapping("/api/v1/cars")
 public class CarsController {
 
     private final CarService carService;
@@ -22,7 +20,7 @@ public class CarsController {
         this.carService = carService;
     }
 
-    @GetMapping
+    @GetMapping("/cars")
     public String getCars(@RequestParam(name="count", required=false) Integer count, Model model) {
         List<Car> cars = carService.getAll(count);
         model.addAttribute("cars", cars);
