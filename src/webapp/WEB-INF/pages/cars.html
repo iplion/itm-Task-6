@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>Cars list</title>
+    <style>
+        table {
+            font-family: Arial, sans-serif;
+            width: 100%;
+            border-collapse: collapse;
+            background-color: black;
+            color: white;
+            text-align: left;
+        }
+        th, td {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <table>
+        <tr>
+            <td>car id</td>
+            <td>car model</td>
+            <td>car series</td>
+            <td>car color</td>
+        </tr>
+        <tr th:each="car : ${cars}">
+            <td th:text="${car.id}"></td>
+            <td th:text="${car.model}"></td>
+            <td th:text="${car.series}"></td>
+            <td th:text="${car.color}"></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
