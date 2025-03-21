@@ -1,5 +1,6 @@
 package web.config;
 
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +18,13 @@ import java.util.Properties;
 @Configuration
 @PropertySource("classpath:db.properties")
 @EnableTransactionManagement
-public class DBConfig {
+@ComponentScan({"web.dao", "web.model", "web.service"})
+public class RootConfig {
 
     private final Environment env;
 
     @Autowired
-    public DBConfig(Environment env) {
+    public RootConfig(Environment env) {
         this.env = env;
     }
 
@@ -47,7 +49,7 @@ public class DBConfig {
         props.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
 
         factoryBean.setHibernateProperties(props);
-        factoryBean.setPackagesToScan("web");
+        factoryBean.setPackagesToScan("web.model");
 
         return factoryBean;
     }
